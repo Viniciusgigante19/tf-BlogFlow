@@ -1,0 +1,123 @@
+=============================================
+ BlogFlow — Documentação da API
+ Base URL: http://localhost:8080/api
+=============================================
+
+----------------------------------------------
+ POSTS
+----------------------------------------------
+
+1. LISTAR TODOS OS POSTS
+   GET /api/posts
+
+   Resposta 200:
+   [
+     {
+       "id": 1,
+       "title": "Título do post",
+       "content": "Conteúdo do post",
+       "tags": "tag1,tag2",
+       "created_at": "2025-03-01T00:00:00.000Z",
+       "updated_at": "2025-03-01T00:00:00.000Z"
+     }
+   ]
+
+------------------------ ----------------------
+
+2. OBTER POST INDIVIDUAL
+   GET /api/posts/:id
+
+   Exemplo: GET /api/posts/1
+
+   Resposta 200:
+   {
+     "id": 1,
+     "title": "Título do post",
+     "content": "Conteúdo do post",
+     "tags": "tag1,tag2",
+     "created_at": "2025-03-01T00:00:00.000Z",
+     "updated_at": "2025-03-01T00:00:00.000Z"
+   }
+
+   Resposta 404:
+   { "message": "Post não encontrado." }
+
+----------------------------------------------
+
+3. CRIAR POST
+   POST /api/posts
+   Content-Type: application/json
+
+   Body obrigatório:
+   {
+     "title": "Título do post",   (string, max 255 chars)
+     "content": "Conteúdo"        (string)
+   }
+
+   Body opcional:
+   {
+     "tags": "tag1,tag2"          (string, separado por vírgula)
+   }
+
+   Resposta 201:
+   { "message": "Post criado." }
+
+   Resposta 400 (campos faltando):
+   { "message": "Título e conteúdo são obrigatórios." }
+
+----------------------------------------------
+
+4. ATUALIZAR POST
+   PUT /api/posts/:id
+   Content-Type: application/json
+
+   Exemplo: PUT /api/posts/1
+
+   Body obrigatório:
+   {
+     "title": "Novo título",
+     "content": "Novo conteúdo"
+   }
+
+   Body opcional:
+   {
+     "tags": "tag1,tag2"
+   }
+
+   Resposta 200:
+   { "message": "Post atualizado." }
+
+   Resposta 400 (campos faltando):
+   { "message": "Título e conteúdo são obrigatórios." }
+
+   Resposta 404:
+   { "message": "Post não encontrado." }
+
+----------------------------------------------
+
+5. DELETAR POST
+   DELETE /api/posts/:id
+
+   Exemplo: DELETE /api/posts/1
+
+   Resposta 200:
+   { "message": "Post deletado." }
+
+   Resposta 404:
+   { "message": "Post não encontrado." }
+
+----------------------------------------------
+
+6. HEALTH CHECK
+   GET /health
+
+   Resposta 200:
+   { "status": "ok" }
+
+----------------------------------------------
+
+ ERROS GERAIS
+ 500 — Erro interno do servidor
+ { "message": "...", "error": "detalhe do erro" }
+
+=============================================
