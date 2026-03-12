@@ -1,0 +1,50 @@
+TF03/
+├── docker-compose.yml      ← Orquestra todos os serviços (frontend, backend, db, nginx)
+│                             
+│
+├── README.MD               ← Instruções do projeto
+│
+├── frontend/               ← Interface servida pelo Nginx
+│   │
+│   │
+│   ├── index.html           
+│   ├── post.html           ← Página principal — lista todos os posts
+│   ├── novo-post.html
+|   |
+|   |
+│   ├── Dockerfile          ← Empacota o frontend com Nginx
+│   ├── css/
+│   │   └── style.css       ← Estilos globais da aplicação
+│   └── js/
+│       └── app.js          ← Lógica de fetch, manipulação de DOM.
+│
+│
+├── BACKEND/                ← API REST em Node.js / Express.
+│   │   
+│   │
+│   ├── app.js              ← Endpoints, consultas.
+│   ├── Dockerfile          ← Empacota a API em container Node
+│   ├── package.json        ← Dependências e scripts npm
+│   └── models/
+|       |
+|       |
+│       ├── db.js   
+|       |                   ← Conexão com banco, funções de consulta definidas
+│       └── sequelize.js    
+|
+├── database/               ← Scripts SQL para inicialização do PostgreSQL
+│   │  
+│   │
+│   ├── schema.sql 
+|   |                       ← Scripts de inicialização do Banco
+│   └── init.sql    
+│
+├── nginx/                  ← Proxy reverso e servidor de arquivos estáticos
+│   │  
+│   │
+│   ├── nginx.conf          ← Regras de proxy, cache, compressão
+│   └── Dockerfile
+│
+└── docs/                   ← Documentação técnica do projeto
+    ├── api.txt 
+    └── structure.txt
