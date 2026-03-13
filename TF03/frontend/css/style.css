@@ -1,93 +1,279 @@
-body{
-font-family: Arial, Helvetica, sans-serif;
-margin:0;
-background:#f5f5f5;
-color:#333;
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-header{
-background:#2c3e50;
-color:white;
-padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --border: #e4e0d8;
+  --text: #1a1814;
+  --text-muted: #7a7368;
+  --accent: #c8502a;
+  --accent-light: #f0e8e3;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+  --radius: 10px;
 }
 
-main{
-max-width:800px;
-margin:auto;
-padding:20px;
-background:white;
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
-h1,h2{
-margin:0 0 20px 0;
+/* HEADER */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.post{
-border-bottom:1px solid #ddd;
-padding:15px 0;
+header h1 {
+  font-family: 'Lora', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
 }
 
-.post a{
-text-decoration:none;
-color:#2c3e50;
-font-weight:bold;
+header h1::after {
+  content: '.';
+  color: var(--accent);
 }
 
-.post p{
-margin:5px 0;
-color:#555;
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.1rem;
+  background: var(--text);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background 0.18s, transform 0.12s;
 }
 
-.btn{
-background:#3498db;
-color:white;
-padding:8px 14px;
-text-decoration:none;
-border-radius:4px;
+.btn:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
 }
 
-form{
-display:flex;
-flex-direction:column;
-gap:10px;
+/* MAIN */
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
 }
 
-input,textarea{
-padding:10px;
-border:1px solid #ccc;
-border-radius:4px;
-font-size:14px;
+main > h2 {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.01em;
 }
 
-textarea{
-min-height:150px;
-resize:vertical;
+/* POSTS CONTAINER */
+#posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
-button{
-background:#2c3e50;
-color:white;
-border:none;
-padding:10px;
-cursor:pointer;
-border-radius:4px;
+/* Each post card — injected by JS, so we style children generically */
+#posts-container > * {
+  background: var(--surface);
+  padding: 1.25rem 1.5rem;
+  transition: background 0.15s;
 }
 
-button:hover{
-background:#1a252f;
+#posts-container > *:hover {
+  background: #fdfcfa;
 }
 
-#delete-btn{
-background:#e74c3c;
+/* POST ARTICLE */
+#post-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  box-shadow: var(--shadow);
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
-#delete-btn:hover{
-background:#c0392b;
+#post-container h2,
+#post-container h1 {
+  font-family: 'Lora', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--text);
 }
 
-.post-actions{
-margin-top:20px;
+#post-container p {
+  color: #3a3630;
+  margin-bottom: 1rem;
+}
+
+/* TAGS */
+.tags, #post-container .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-family: 'Sora', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* POST ACTIONS */
+.post-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+#delete-btn {
+  padding: 0.5rem 1.2rem;
+  background: transparent;
+  color: #b04030;
+  border: 1.5px solid #e0b0a8;
+  border-radius: 6px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+#delete-btn:hover {
+  background: #b04030;
+  border-color: #b04030;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* FORM */
+#post-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+#post-form label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.9rem;
+}
+
+#post-form label:first-of-type {
+  margin-top: 0;
+}
+
+#post-form input[type="text"],
+#post-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.18s, background 0.18s;
+  resize: vertical;
+}
+
+#post-form input[type="text"]:focus,
+#post-form textarea:focus {
+  border-color: var(--accent);
+  background: #fff;
+}
+
+#post-form textarea {
+  min-height: 160px;
+}
+
+#post-form button[type="submit"] {
+  margin-top: 1.25rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--text);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  letter-spacing: 0.02em;
+  transition: background 0.18s, transform 0.12s;
+}
+
+#post-form button[type="submit"]:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* FEEDBACK MESSAGE */
+#message {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--accent);
+  min-height: 1.2em;
+  font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  header { padding: 0 1rem; }
+  main { padding: 1.5rem 1rem; }
+  #post-form, #post-container { padding: 1.25rem 1.25rem; }
 }

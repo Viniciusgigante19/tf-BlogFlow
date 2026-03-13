@@ -5,36 +5,24 @@
 <title>Novo Post</title>
 <link rel="stylesheet" href="./css/style.css">
 </head>
-
 <body>
-
 <header>
-<h1>Criar Post</h1>
-<a class="btn" href="index.html">Voltar</a>
+<h1>BlogFlow</h1>
+<a class="btn" href="index.html">← Voltar</a>
 </header>
-
 <main>
-
+<h2>Criar post</h2>
 <form id="post-form">
-
 <label>Título</label>
-<input type="text" id="title" maxlength="255" required>
-
+<input type="text" id="title" maxlength="255" required placeholder="Título do post">
 <label>Conteúdo</label>
-<textarea id="content" required></textarea>
-
+<textarea id="content" required placeholder="Escreva aqui..."></textarea>
 <label>Tags</label>
 <input type="text" id="tags" placeholder="tag1,tag2">
-
 <button type="submit">Publicar</button>
-
 </form>
-
 <p id="message"></p>
-
 </main>
-
 <script src="./js/app.js"></script>
-
 </body>
 </html>
