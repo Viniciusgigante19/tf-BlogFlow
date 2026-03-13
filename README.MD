@@ -30,3 +30,11 @@ No caminho do passo passado rode:
 ```sh
 docker compose up --build
 ```
+
+### URL do projeto:
+Após o build dos conteineres acesse em seu navegador:
+
+http://localhost:8080/
+
+### URL da API:
+http://localhost:8080/api/posts
